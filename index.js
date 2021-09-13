@@ -33,10 +33,10 @@ element.addEventListener('submit', event => {
 });
 
 
-const quotesEl = document.querySelector('.quotes');
+const moviesEl = document.querySelector('.quotes');
 const loaderEl = document.querySelector('.loader');
 
-// get the quotes from API
+// get the movies from API
 const getMovies = async (page, limit) => {
 	const API_URL = `${fetchURL}&page=${page}`;
 	const response = await fetch(API_URL);
@@ -47,16 +47,15 @@ const getMovies = async (page, limit) => {
 	return await response.json();
 }
 
-// show the quotes
-const showMovies = (quotes) => {
-	quotes.forEach(quote => {
-		const quoteEl = document.createElement('li');
-		quoteEl.classList.add('quote');
-		quoteEl.innerHTML = `
-            <div style="background-image: url('${imageLink}${quote.poster_path}');"></div>
+// show the movies
+const showMovies = (movies) => {
+	movies.forEach(movie => {
+		const movieEl = document.createElement('li');
+		movieEl.innerHTML = `
+            <div style="background-image: url('${imageLink}${movie.poster_path}');"></div>
         `;
 
-		quotesEl.appendChild(quoteEl);
+		moviesEl.appendChild(movieEl);
 	});
 };
 
@@ -73,7 +72,7 @@ const hasMoreMovies = (page, limit, total) => {
 	return total === 0 || startIndex < total;
 };
 
-// load quotes
+// load movies
 const loadMovies = async (page, limit) => {
 
 	// show the loader
@@ -82,11 +81,11 @@ const loadMovies = async (page, limit) => {
 	// 0.5 second later
 	setTimeout(async () => {
 		try {
-			// if having more quotes to fetch
+			// if having more movies to fetch
 			if (hasMoreMovies(page, limit, total)) {
-				// call the API to get quotes
+				// call the API to get movies
 				const response = await getMovies(page, limit);
-				// show quotes
+				// show movies
 				showMovies(response.results);
 				// update the total
 				total = response.total_results;

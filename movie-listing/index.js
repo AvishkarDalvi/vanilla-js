@@ -6,6 +6,7 @@ let total = 0;
 var fetchURL;
 getSearch();
 
+//this function checks if the search query has been entered and sets the search or the default url accordingly
 function getSearch() {
 	let searchedVal = document.getElementById("search-box").value;
 	if (searchedVal.length > 0) {
@@ -16,12 +17,15 @@ function getSearch() {
 	}
 
 }
+
+//this function is called on reset click it calls the default url and sets the current page to 1 to start the list from page 1
 function RefetchList() {
 	document.getElementById("grid-list").innerHTML = "";
 	getSearch();
 	currentPage = 1;
 	loadMovies(currentPage, limit);
 }
+
 const element = document.querySelector('form');
 element.addEventListener('submit', event => {
 	event.preventDefault();

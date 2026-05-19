@@ -1,5 +1,7 @@
 # Movies
 
+Hello!!!
+
 An application built in vanilla js, html, and css that displays a list of top rated movies and fetches the the next batch movies as and when you scroll. It also lets you search movies and then fetches the mactching movies as and when you scroll. It also has reset functionality to go back to the initial list of top rated movies.
 
 ---
